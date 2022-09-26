@@ -6,15 +6,21 @@ public class Ball : MonoBehaviour
 {
     public Rigidbody2D rb;
     public float ballForce;
+    bool gameStarted = false;
     // Start is called before the first frame update
     void Start()
     {
-        rb.AddForce (new Vector2 (ballForce, ballForce));
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space) && gameStarted == false)
+        {
+            transform.SetParent(null);
+            rb.isKinematic = false;
+            rb.AddForce (new Vector2 (ballForce, ballForce));
+            gameStarted = true;
+        }
     }
 }
